@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+# Define todo route instances
 todo_router = APIRouter()
 
 todo_list = []
