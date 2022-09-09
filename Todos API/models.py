@@ -8,8 +8,8 @@ class Item(BaseModel):
     status: str
 
     class Config:
-        Schema_extra = {
-            'Example': {
+        schema_extra = {
+            'example': {
                 'item': "your todo",
                 'status': 'completed'
             }
@@ -21,12 +21,23 @@ class Todo(BaseModel):
     item: Item
 
     class Config:
-        Schema_extra = {
-            'Example': {
+        schema_extra = {
+            'example': {
                 'id': 1,
                 'item': {
                     'item': "your todo",
                     'status': 'completed'
                 }
+            }
+        }
+
+
+class TodoItem(BaseModel):
+    item: str
+
+    class Config:
+        schema_extra = {
+            "example": {
+                'item': "Read the next chapter of the book"
             }
         }
