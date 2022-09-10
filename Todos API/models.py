@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import List
 
 # Define our Todo API Data Model
 
@@ -41,3 +42,7 @@ class TodoItem(BaseModel):
                 'item': "Read the next chapter of the book"
             }
         }
+
+
+class TodoItems(BaseModel):
+    pass
