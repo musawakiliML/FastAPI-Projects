@@ -32,10 +32,16 @@ async def get_item(id: int):
 @app.post('/')
 async def add_item(item: Item):
     new_id = len(test_database.keys()) + 1
-    test_database[new_id] = {"task":item}
+    test_database[new_id] = {"task":item.task}
 
     return test_database
 
+# update an item using put
+@app.put('/{id}')
+async def update_item(id: int, item:Item):
+    test_database[id]['task'] = item.task
+    
+    return test_database
 
 # @app.get('/')
 # async def index() -> dict:
