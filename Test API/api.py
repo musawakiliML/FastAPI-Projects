@@ -1,5 +1,7 @@
-from fastapi import FastAPI
-from models import Item
+from fastapi import FastAPI, Depends
+from schema import Item
+
+from database import Base, SessionLocal, engine
 
 app = FastAPI()
 
