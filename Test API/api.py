@@ -43,6 +43,13 @@ async def update_item(id: int, item:Item):
     
     return test_database
 
+# delete an item using delete
+@app.delete('/{id}')
+async def delete_item(id: int):
+    test_database.pop(id)
+    
+    return test_database
+
 # @app.get('/')
 # async def index() -> dict:
 #    return {"data": "Hello World!!"}
