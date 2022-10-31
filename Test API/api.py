@@ -2,9 +2,15 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+test_database = {
+    1:{"task":"read books"},
+    2:{"task":"Write blog"},
+    3:{"task":"Create a youtube stream"},
+}
+
 @app.get('/')
 async def get_items():
-    return ['item 1', 'item 2', 'item 3']
+    return test_database
 
 
 
