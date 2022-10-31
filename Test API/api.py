@@ -8,11 +8,15 @@ test_database = {
     3:{"task":"Create a youtube stream"},
 }
 
+# get all items
 @app.get('/')
 async def get_items():
     return test_database
 
-
+# get a single item
+@app.get("/{id}")
+async def get_item(id:int):
+    return test_database[id]
 
 
 
