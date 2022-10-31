@@ -32,7 +32,7 @@ async def get_item(id: int):
 @app.post('/')
 async def add_item(item: Item):
     new_id = len(test_database.keys()) + 1
-    test_database[new_id] = item
+    test_database[new_id] = {"task":item}
 
     return test_database
 
