@@ -16,12 +16,14 @@ async def get_items():
 # get a single item
 @app.get("/{id}")
 async def get_item(id:int):
-    if id in test_database.keys:
+    if id in test_database.keys():
         return test_database[id]
     else:
         return "Invalid ID"
 
-
+# post an item option 1
+@app.post('/')
+async def add_item(task:str):
 
 
 
