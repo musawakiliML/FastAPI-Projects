@@ -8,6 +8,14 @@ from database import Base, SessionLocal, engine
 # create database
 Base.metadata.create_all(engine)
 
+
+def get_session():
+    session = SessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()
+
 app = FastAPI()
 
 test_database = {
@@ -20,8 +28,10 @@ test_database = {
 
 
 @app.get('/')
-async def get_items():
-    return test_database
+async def get_items(session: Session = Depends(get_session)):
+    items = session.query(models.Item).all()
+    #return test_database
+    return items
 
 # get a single item
 
@@ -37,11 +47,17 @@ async def get_item(id: int):
 
 
 @app.post('/')
-async def add_item(item: Item):
-    new_id = len(test_database.keys()) + 1
-    test_database[new_id] = {"task":item.task}
+async def add_item(item: Item, session: Session = Depends(get_session)):
+    item = models.Item(task = item.task)
+    session.add(item)
+    session.commit()
+    session.refresh(item)
+    
+    return item
+    #new_id = len(test_database.keys()) + 1
+    #test_database[new_id] = {"task":item.task}
 
-    return test_database
+    #return test_database
 
 # update an item using put
 @app.put('/{id}')
