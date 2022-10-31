@@ -16,7 +16,10 @@ async def get_items():
 # get a single item
 @app.get("/{id}")
 async def get_item(id:int):
-    return test_database[id]
+    if id in test_database.keys:
+        return test_database[id]
+    else:
+        return "Invalid ID"
 
 
 
